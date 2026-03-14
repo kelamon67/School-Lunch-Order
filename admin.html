@@ -1,109 +1,27 @@
 <!DOCTYPE html>
 <html>
 
+<h2>Today's Sales</h2>
+
+<p>Total Orders: <span id="totalOrders">0</span></p>
+
+<p>Total Money: K<span id="totalMoney">0</span></p>
+
+
 <head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Lunch Orders Admin</title>
-
-<style>
-
-body{
-font-family:Arial;
-padding:20px;
-background:#f4f4f4;
-}
-
-h1{
-margin-bottom:30px;
-}
-
-.order{
-background:white;
-padding:15px;
-margin-bottom:15px;
-border-radius:8px;
-}
-
-button{
-padding:8px 12px;
-margin-top:8px;
-cursor:pointer;
-}
-
-.paid{
-background:green;
-color:white;
-}
-
-</style>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders Dashboard</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Lunch Orders Dashboard</h1>
+<h1>Owner Orders Dashboard</h1>
 
 <div id="orders"></div>
 
-<script>
-
-let orders = JSON.parse(localStorage.getItem("orders")) || []
-
-function renderOrders(){
-
-let ordersDiv = document.getElementById("orders")
-
-ordersDiv.innerHTML=""
-
-orders.forEach((o,i)=>{
-
-ordersDiv.innerHTML += `
-
-<div class="order">
-
-<b>${o.name}</b> (${o.class})
-
-<br>
-
-${o.item} — K${o.price}
-
-<br>
-
-Status: ${o.status}
-
-<br>
-
-<button onclick="markPaid(${i})" class="paid">
-PAID
-</button>
-
-</div>
-
-`
-
-})
-
-}
-
-function markPaid(i){
-
-orders[i].status="PAID"
-
-localStorage.setItem("orders",JSON.stringify(orders))
-
-renderOrders()
-
-}
-
-renderOrders()
-
-</script>
+<script src="script.js"></script>
 
 </body>
 
 </html>
-<div id="orders"></div>
-
-<script src="admin.js"></script>
