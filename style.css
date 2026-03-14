@@ -1,14 +1,25 @@
+/* GENERAL PAGE */
+
 body{
-font-family:Arial;
+font-family: Arial;
 background:#f2f2f2;
+margin:0;
 text-align:center;
 }
+
+h1{
+margin-top:20px;
+}
+
+
+/* STUDENT MENU */
 
 .menu{
 display:flex;
 justify-content:center;
 gap:20px;
 flex-wrap:wrap;
+margin-top:30px;
 }
 
 .food{
@@ -24,18 +35,37 @@ width:100%;
 border-radius:10px;
 }
 
-button{
-background:green;
-color:white;
-border:none;
-padding:10px;
-margin-top:10px;
-border-radius:5px;
-cursor:pointer;
-}
-
 input{
 padding:10px;
 margin:10px;
 width:200px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+background:green;
+color:white;
+border:none;
+padding:10px 15px;
+margin:5px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0b7a0b;
+}
+
+
+/* ADMIN DASHBOARD */
+
+#orders{
+max-width:400px;
+margin:30px auto;
+}
+
+#orders .food{
+width:100%;
+text-align:center;
 }
