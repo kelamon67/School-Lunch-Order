@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gordons Secondary School Lunch Menu</h1>Pay Today! Pick your lunch tomorrow.</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Gordons Secondary School Lunch Menu </h1> Pay Today! Pick your lunch tomorrow.</h1>
+
+
+<div class="menu">
+
+<div class="food">
+<img src="images/chicken.jpg">
+<h3>Chicken & Rice</h3>
+<p>K4.00</p>
+<button onclick="orderFood('Chicken & Rice',5)">ORDER</button>
+</div>
+
+<div class="food">
+<img src="images/hotdog3.jpg">
+<h3>Hotdog BBQ Sauce</h3>
+<p>K3.00</p>
+<button onclick="orderFood('Hotdog BBQ Sauce',3)">ORDER</button>
+</div>
+
+<div class="food">
+<img src="images/lamb2.jpg">
+<h3>Rice & Lamb Stew</h3>
+<p>K4.00</p>
+<button onclick="orderFood('Rice & Lamb Stew',4)">ORDER</button>
+</div>
+
+</div>
+
+<h2>Your Order</h2>
+
+<input id="name" placeholder="Your Name">
+<input id="class" placeholder="Your Class">
+
+<div id="selectedFood"></div>
+
+<button onclick="placeOrder()">Place Order</button>
+
+<div id="message"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
