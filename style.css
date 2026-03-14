@@ -69,3 +69,9 @@ margin:30px auto;
 width:100%;
 text-align:center;
 }
+
+/* EXTRA SPACE AT BOTTOM FOR MOBILE */
+
+body{
+padding-bottom:80px;
+}
