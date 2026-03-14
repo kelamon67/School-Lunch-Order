@@ -20,33 +20,23 @@ function placeOrder(){
 let name = document.getElementById("name").value;
 let studentClass = document.getElementById("class").value;
 
-if(name=="" || studentClass=="" || selectedFood==""){
-alert("Please fill all fields");
-return;
-}
+fetch("https://script.google.com/macros/s/AKfycbwkjUmw3VS2Lf4t7q2vst93SkfvrK1RTX7T7u0NJ_0YVFku21aqyZofjSWDYOD91l7-/exec",{
 
-let order = {
+method:"POST",
+
+body:JSON.stringify({
 
 name:name,
 class:studentClass,
 food:selectedFood,
-price:selectedPrice,
-status:"Payment Pending",
-time:new Date().toLocaleTimeString()
+price:selectedPrice
 
-};
+})
 
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-orders.push(order);
-
-localStorage.setItem("orders",JSON.stringify(orders));
+});
 
 document.getElementById("message").innerHTML =
-"Order sent. Please pay Mechola. Call 81900796";
-
-document.getElementById("name").value="";
-document.getElementById("class").value="";
+"Order sent. Pay Mechola. Call 72232225";
 
 }
 

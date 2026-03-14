@@ -20,7 +20,45 @@
 
 <div id="orders"></div>
 
-<script src="script.js"></script>
+<script>
+
+async function loadOrders(){
+
+let response = await fetch("https://script.google.com/macros/s/AKfycbwkjUmw3VS2Lf4t7q2vst93SkfvrK1RTX7T7u0NJ_0YVFku21aqyZofjSWDYOD91l7-/exec");
+
+let orders = await response.json();
+
+let html = "";
+
+orders.forEach(o=>{
+
+html += `
+
+<div class="food">
+
+<h3>${o.food}</h3>
+
+<p>${o.name} - ${o.class}</p>
+
+<p>Status: ${o.status}</p>
+
+<p>Price: K${o.price}</p>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("orders").innerHTML = html;
+
+}
+
+setInterval(loadOrders,3000);
+
+loadOrders();
+
+</script>
 
 </body>
 
