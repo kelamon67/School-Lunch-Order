@@ -1,23 +1,52 @@
-let selectedFood = "";
-let selectedPrice = 0;
+// MENU ITEMS
+const menu = [
+
+{ name:"Chicken Rice", price:5, image:"images/chicken.jpg" },
+
+{ name:"Hot Dog", price:3, image:"images/hotdog3.jpg" },
+
+{ name:"Lamb Curry", price:6, image:"images/lamb2.jpg" }
+
+];
 
 
-// STUDENT SELECT FOOD
-function orderFood(food,price){
+// LOAD MENU
+function loadMenu(){
 
-selectedFood = food;
-selectedPrice = price;
+let html="";
 
-document.getElementById("selectedFood").innerHTML =
-"Selected: " + food + " - K" + price;
+menu.forEach(item=>{
+
+html += `
+
+<div class="food">
+
+<img src="${item.image}">
+
+<h3>${item.name}</h3>
+
+<p>K${item.price}</p>
+
+<button onclick="orderFood('${item.name}',${item.price})">
+ORDER
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("menu").innerHTML = html;
 
 }
 
 
-// PLACE ORDER
-function placeOrder(){
+// SEND ORDER
+function orderFood(food,price){
 
 let name = document.getElementById("name").value;
+
 let studentClass = document.getElementById("class").value;
 
 fetch("https://script.google.com/macros/s/AKfycbwkjUmw3VS2Lf4t7q2vst93SkfvrK1RTX7T7u0NJ_0YVFku21aqyZofjSWDYOD91l7-/exec",{
@@ -28,108 +57,22 @@ body:JSON.stringify({
 
 name:name,
 class:studentClass,
-food:selectedFood,
-price:selectedPrice
+food:food,
+price:price
 
 })
 
-});
+})
+
+.then(()=>{
 
 document.getElementById("message").innerHTML =
-"Order sent. Pay Mechola. Call 72232225";
-
-}
-
-
-// ADMIN LOAD ORDERS
-function loadOrders(){
-
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-const div = document.getElementById("orders");
-
-if(!div) return;
-
-div.innerHTML = "";
-
-let totalOrders = 0;
-let totalMoney = 0;
-
-orders.forEach((o,i)=>{
-
-totalOrders++;
-totalMoney += Number(o.price);
-
-div.innerHTML += `
-
-<div class="food">
-
-<h3>${o.food}</h3>
-
-<p><b>Name:</b> ${o.name}</p>
-
-<p><b>Class:</b> ${o.class}</p>
-
-<p><b>Price:</b> K${o.price}</p>
-
-<p><b>Status:</b> ${o.status}</p>
-
-<p><b>Time:</b> ${o.time}</p>
-
-<button onclick="markPaid(${i})">
-MARK PAID
-</button>
-
-<button onclick="completeOrder(${i})">
-COMPLETE
-</button>
-
-</div>
-
-`;
+"Order sent. Please go pay.";
 
 });
 
-if(document.getElementById("totalOrders"))
-document.getElementById("totalOrders").innerText = totalOrders;
-
-if(document.getElementById("totalMoney"))
-document.getElementById("totalMoney").innerText = totalMoney;
-
 }
 
 
-// MARK ORDER PAID
-function markPaid(index){
-
-let orders = JSON.parse(localStorage.getItem("orders"));
-
-orders[index].status="PAID";
-
-localStorage.setItem("orders",JSON.stringify(orders));
-
-loadOrders();
-
-}
-
-
-// COMPLETE ORDER
-function completeOrder(index){
-
-let orders = JSON.parse(localStorage.getItem("orders"));
-
-orders.splice(index,1);
-
-localStorage.setItem("orders",JSON.stringify(orders));
-
-loadOrders();
-
-}
-
-
-// AUTO LOAD ADMIN PAGE
-window.onload = function(){
-
-loadOrders();
-
-};
+// START APP
+window.onload = loadMenu;
