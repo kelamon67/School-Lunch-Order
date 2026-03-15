@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
 
-<h2>Today's Sales</h2>
-
-<p>Total Orders: <span id="totalOrders">0</span></p>
-
-<p>Total Money: K<span id="totalMoney">0</span></p>
-
-
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Orders Dashboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<h1>Owner Orders Dashboard</h1>
+<div class="container">
+
+<h1>Lunch Orders</h1>
 
 <div id="orders"></div>
+
+</div>
 
 <script>
 
@@ -30,7 +31,7 @@ let orders = await response.json();
 
 let html = "";
 
-orders.forEach(o=>{
+orders.reverse().forEach(o=>{
 
 html += `
 
@@ -40,9 +41,9 @@ html += `
 
 <p>${o.name} - ${o.class}</p>
 
-<p>Status: ${o.status}</p>
-
 <p>Price: K${o.price}</p>
+
+<p>Status: ${o.status}</p>
 
 </div>
 
